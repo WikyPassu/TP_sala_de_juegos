@@ -1,0 +1,19 @@
+<body style="background-image: linear-gradient(black,blueviolet);">
+  <mat-toolbar style="background-image: linear-gradient(to right, black,blueviolet);">
+    <img width="60" alt="TP-LaboIV" src="../assets/icon.png"/>
+    <a class="miEstilo" routerLink="" routerLinkActive="active">
+      <span class="fas fa-home"></span> Inicio</a>
+    <a class="miEstilo"routerLink="juegos" routerLinkActive="active">
+      <span class="fas fa-gamepad"></span> Juegos</a>
+    <a class="miEstilo" routerLink="acerca-de" routerLinkActive="active">
+      <span class="fas fa-user-alt"></span> Acerca de...</a>
+  </mat-toolbar>
+  
+  <div class="content" role="main">
+    <div class="card-container">
+      <mat-card>
+        <router-outlet></router-outlet>
+      </mat-card>
+    </div>
+  </div>
+</body>
