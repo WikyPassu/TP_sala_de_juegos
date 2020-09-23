@@ -1,0 +1,15 @@
+mat-grid-list{
+    width: 80vw;
+    line-height: 20vw;
+}
+
+img{
+    width: 90%;
+    cursor: pointer;
+}
+
+@media (orientation: portrait){
+    mat-grid-list{
+        margin-top: 0px !important;
+    }
+}

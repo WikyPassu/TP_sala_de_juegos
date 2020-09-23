@@ -1,0 +1,19 @@
+mat-toolbar{
+    background-image: linear-gradient(to right, black,blueviolet);
+}
+
+button{
+    color: rgb(255, 255, 255);
+}
+
+button:hover{
+    color: rgb(255, 0, 255);
+}
+
+span:hover{
+    color: rgb(255, 0, 255);
+}
+
+::ng-deep .mat-menu{
+    background: blueviolet;
+}
