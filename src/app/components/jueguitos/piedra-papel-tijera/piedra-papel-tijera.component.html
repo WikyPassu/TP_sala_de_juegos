@@ -1,1 +1,42 @@
-<img style="width: 80%;height: auto;" src="../../../assets/piedrapapeltijera.png">
+<!-- <img style="width: 80%;height: auto;" src="../../../assets/piedrapapeltijera.png"> -->
+
+<div id="usuario">
+    <b>Usuario</b>
+    <div class="divOpciones">
+        <button mat class="opciones" (click)="jugar(0)"><img draggable="false" src="assets/piedra.png"></button>
+    </div>
+    <div class="divOpciones">
+        <button class="opciones" (click)="jugar(1)"><img draggable="false" src="assets/papel.png"></button>
+    </div>
+    <div class="divOpciones">
+        <button class="opciones" (click)="jugar(2)"><img draggable="false" src="assets/tijera.png"></button>
+    </div>
+</div>
+
+<div id="centro">
+    <b>| Jugadas: {{jugadas}} | Ganadas: {{ganadas}} |</b>
+    <div class="divOpciones">
+        <p>Usuario:</p>
+        <button disabled class="elegido">
+            <img class="resultado" draggable="false" [src]="usuario">
+        </button>
+    </div>
+    <div class="divOpciones">
+        <p>IA:</p>
+        <button disabled class="elegido"><img class="resultado" draggable="false" [src]="IA"></button>
+    </div>
+    <p><b>Resultado: {{resultado}}</b></p>
+</div>
+
+<div id="ia">
+    <b>IA</b>
+    <div class="divOpciones">
+        <button class="opciones" disabled><img draggable="false" src="assets/piedra.png"></button>
+    </div>
+    <div class="divOpciones">
+        <button class="opciones" disabled><img draggable="false" src="assets/papel.png"></button>
+    </div>
+    <div class="divOpciones">
+        <button class="opciones" disabled><img draggable="false" src="assets/tijera.png"></button>
+    </div>
+</div>

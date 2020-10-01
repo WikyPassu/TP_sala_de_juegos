@@ -1,0 +1,44 @@
+#usuario{
+    width: 30%;
+    //background-color: rgb(221, 184, 255);
+    display: inline-block;
+}
+
+#centro{
+    width: 40%;
+    display: inline-block;
+}
+
+#ia{
+    width: 30%;
+    //background-color: rgb(199, 139, 255);
+    display: inline-block;
+}
+
+img{
+    width: 50%;
+}
+
+img.resultado{
+    width: 100%;
+}
+
+button.opciones{
+    width: 70%;
+    background-color: blueviolet;
+}
+
+button.opciones:hover{
+    background-color: rgb(168, 93, 238);
+}
+
+button.elegido{
+    width: 10vw;
+    height: 10vw;
+}
+
+.divOpciones{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
