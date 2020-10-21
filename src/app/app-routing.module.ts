@@ -11,6 +11,10 @@ import { AdivinaElNumeroComponent } from './components/jueguitos/adivina-el-nume
 import { TaTeTiComponent } from './components/jueguitos/ta-te-ti/ta-te-ti.component';
 import { MemotestComponent } from './components/jueguitos/memotest/memotest.component';
 import { LoggedInGuard } from "./guards/logged-in.guard";
+import { NotLoggedInGuard } from "./guards/not-logged-in.guard";
+import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
+import { RegistrarseComponent } from './components/registrarse/registrarse.component';
+import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
 
 const routes: Routes = [
   {
@@ -55,6 +59,21 @@ const routes: Routes = [
   {
     path: 'acerca-de',
     component: AcercaDeComponent
+  },
+  {
+    path: 'registro',
+    component: RegistrarseComponent,
+    canActivate: [NotLoggedInGuard]
+  },
+  {
+    path: 'iniciar-sesion',
+    component: IniciarSesionComponent,
+    canActivate: [NotLoggedInGuard]
+  },
+  {
+    path: 'cerrar-sesion',
+    component: CerrarSesionComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: '**',

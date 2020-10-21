@@ -32,6 +32,10 @@ import { AdivinaElNumeroComponent } from './components/jueguitos/adivina-el-nume
 import { TaTeTiComponent } from './components/jueguitos/ta-te-ti/ta-te-ti.component';
 import { MemotestComponent } from './components/jueguitos/memotest/memotest.component';
 import { CardComponent } from './components/card/card.component';
+import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesion.component';
+import { RegistrarseComponent } from './components/registrarse/registrarse.component';
+import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
@@ -48,7 +52,11 @@ import { CardComponent } from './components/card/card.component';
     AdivinaElNumeroComponent,
     TaTeTiComponent,
     MemotestComponent,
-    CardComponent
+    CardComponent,
+    IniciarSesionComponent,
+    RegistrarseComponent,
+    CerrarSesionComponent,
+    SpinnerComponent
   ],
   imports: [
     FormsModule,

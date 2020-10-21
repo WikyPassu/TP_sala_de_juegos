@@ -14,36 +14,46 @@ export class MenuItemsService {
         texto: "Inicio",
         icono: "home",
         ruta: "",
-        funcion: false
+        activo: true
       },
       {
         texto: "Juegos",
         icono: "sports_esports",
         ruta: "juegos",
-        funcion: false
+        activo: false
       },
       {
         texto: "Acerca de...",
         icono: "account_circle",
         ruta: "acerca-de",
-        funcion: false
-      }];
+        activo: true
+      },
+      {
+        texto: "Registrarse",
+        icono: "person_add",
+        ruta: "registro",
+        activo: true
+      },
+      {
+        texto: "Iniciar sesión",
+        icono: "login",
+        ruta: "iniciar-sesion",
+        activo: true
+      },
+      {
+        texto: "Cerrar sesión",
+        icono: "exit_to_app",
+        ruta: "cerrar-sesion",
+        activo: false
+      }
+    ]
   }
 
   getMenu(){
     return this.menuItems;
   }
 
-  pushMenuItem(texto:string, icono:string, ruta:string, funcion:boolean = false){
-    this.menuItems.push({
-      texto: texto,
-      icono: icono,
-      ruta: ruta,
-      funcion: funcion
-    });
-  }
-
-  popMenuItem(){
-    this.menuItems.pop();
+  changeItemStatus(index: number, activo: boolean){
+    this.menuItems[index].activo = activo;
   }
 }

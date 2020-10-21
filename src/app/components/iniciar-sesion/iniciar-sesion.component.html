@@ -1,0 +1,30 @@
+<div align="center">
+    <br>
+    <h1><b>Iniciar sesión</b></h1>
+    <p>Inicia sesión para poder empezar a jugar.</p>
+    <mat-form-field class="example-full-width">
+        <mat-label>Correo</mat-label>
+        <input type="text"
+            matInput
+            [(ngModel)]="email"
+            name="email"
+            placeholder="Correo electrónico">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <mat-label>Clave</mat-label>
+        <input type="password"
+            matInput
+            [(ngModel)]="password"
+            name="password"
+            placeholder="Clave">
+    </mat-form-field>
+    <br>
+    <mat-card class="error" *ngIf="hayError">
+        <mat-label><strong>{{mensaje}}</strong></mat-label>
+    </mat-card>
+    <br>
+    <button mat-raised-button color="primary" (click)="login()">Enviar</button>
+    <br><br>
+</div>
+<app-spinner *ngIf="spinner"></app-spinner>
