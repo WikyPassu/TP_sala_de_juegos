@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "fireapp-779bf": {
+      "hosting": {
+        "ruteo": [
+          "fireapp-779bf"
+        ]
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@
     <mat-icon>
         <span style="color: blueviolet;">local_fire_department</span>
     </mat-icon>
-    <button mat-button routerLink="{{item.ruta}}" routerLinkActive="active" *ngFor="let item of menuItems" fxHide.xs>
+    <button mat-button routerLink="{{item.ruta}}" routerLinkActive="active" *ngFor="let item of menuItems"  (click)="logout(item.funcion)" fxHide.xs>
         <mat-icon class="mr">{{item.icono}}</mat-icon>
         {{item.texto}}
     </button>
@@ -11,7 +11,7 @@
     </button>
     <mat-menu class="mat-menu" #dropMenu="matMenu">
         <ng-container *ngFor="let item of menuItems">
-            <button mat-menu-item routerLink="{{item.ruta}}" routerLinkActive="active">
+            <button mat-menu-item routerLink="{{item.ruta}}" routerLinkActive="active" (click)="logout(item.funcion)">
                 <mat-icon style="color: white;" class="mr">{{item.icono}}</mat-icon>
                 {{item.texto}}
             </button>

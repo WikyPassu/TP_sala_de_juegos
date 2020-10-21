@@ -10,6 +10,7 @@ import { AgilidadAritmeticaComponent } from './components/jueguitos/agilidad-ari
 import { AdivinaElNumeroComponent } from './components/jueguitos/adivina-el-numero/adivina-el-numero.component';
 import { TaTeTiComponent } from './components/jueguitos/ta-te-ti/ta-te-ti.component';
 import { MemotestComponent } from './components/jueguitos/memotest/memotest.component';
+import { LoggedInGuard } from "./guards/logged-in.guard";
 
 const routes: Routes = [
   {
@@ -19,30 +20,37 @@ const routes: Routes = [
   {
     path: 'juegos',
     component: JuegosComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'juegos/anagrama',
     component: AnagramaComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'juegos/piedra-papel-tijera',
     component: PiedraPapelTijeraComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'juegos/agilidad-aritmetica',
     component: AgilidadAritmeticaComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'juegos/adivina-el-numero',
     component: AdivinaElNumeroComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'juegos/ta-te-ti',
     component: TaTeTiComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'juegos/memotest',
     component: MemotestComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'acerca-de',

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from "../../interfaces/menu-item";
+import { AuthService } from "../../services/auth.service";
+import { MenuItemsService } from "../../services/menu-items.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-toolbar',
@@ -8,27 +11,20 @@ import { MenuItem } from "../../interfaces/menu-item";
 })
 export class ToolbarComponent implements OnInit {
 
-  menuItems: MenuItem[] = [
-    {
-      texto: "Inicio",
-      icono: "home",
-      ruta: ""
-    },
-    {
-      texto: "Juegos",
-      icono: "sports_esports",
-      ruta: "juegos"
-    },
-    {
-      texto: "Acerca de...",
-      icono: "account_circle",
-      ruta: "acerca-de"
-    }
-  ]
+  menuItems: MenuItem[] = [];
 
-  constructor() { }
+  constructor(private auth: AuthService, private router: Router, private menu: MenuItemsService) {
+    this.menuItems = this.menu.getMenu();
+  }
 
   ngOnInit(): void {
   }
 
+  logout(logout: boolean){
+    if(logout){
+      this.menu.popMenuItem();
+      this.auth.logout();
+      this.auth.logged = false;
+    }
+  }
 }
