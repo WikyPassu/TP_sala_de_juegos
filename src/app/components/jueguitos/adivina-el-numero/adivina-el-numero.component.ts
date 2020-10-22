@@ -73,8 +73,7 @@ export class AdivinaElNumeroComponent implements OnInit {
 
   jugarOtraVez(){
     this.pauseTimer();
-	this.numero = "";
-	this.intentos = 0;
+	  this.intentos = 0;
     this.mensaje = "Esperando a que ingreses un número...";
     this.time = 0;
     this.empezar();
