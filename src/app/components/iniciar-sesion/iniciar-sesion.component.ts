@@ -21,6 +21,29 @@ export class IniciarSesionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  loginAdmin(){
+    this.mensaje = "";
+    this.hayError = false;
+    this.email = "admin@admin.com";
+    this.password = "123456";
+    this.spinner = true;
+    setTimeout(() => {
+      this.auth.login(this.email, this.password)
+        .then((res: any) => {
+          this.auth.setDatos({
+            uid: res.user.uid,
+            email: res.user.email
+          });
+          this.menu.changeItemStatus(1, true);
+          this.menu.changeItemStatus(3, false);
+          this.menu.changeItemStatus(4, false);
+          this.menu.changeItemStatus(5, true);
+          this.router.navigate(["/juegos"]);
+          this.spinner = false;
+        });
+    }, 2000);
+  }
+
   login(){
     this.mensaje = "";
     this.hayError = false;

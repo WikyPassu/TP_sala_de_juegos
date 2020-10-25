@@ -9,10 +9,9 @@ import { MenuItemsService } from "../../services/menu-items.service";
 })
 export class ToolbarComponent implements OnInit {
 
-  menuItems: MenuItem[] = [];
+  menuItems: MenuItem[] = this.menu.menuItems;
 
   constructor(private menu: MenuItemsService) {
-    this.menuItems = this.menu.getMenu();
   }
 
   ngOnInit(): void {

@@ -14,11 +14,10 @@ export class LoggedInGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    
-    let logged: boolean = false;
-    if(this.auth.getDatos() != null){
-      logged = true;
-    }
-    return logged;
+    return new Promise((resolve, reject) => {
+      this.auth.isLogged()
+      .then(logged => resolve(logged))
+      .catch(error => reject(error));
+    });
   }
 }

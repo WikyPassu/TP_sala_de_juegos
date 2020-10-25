@@ -11,10 +11,10 @@ import { MenuItemsService } from "../../services/menu-items.service";
 export class CerrarSesionComponent implements OnInit {
 
   spinner: boolean = false;
-  email: string;
+  //email: string;
 
   constructor(private auth: AuthService, private router: Router, private menu: MenuItemsService) {
-    this.email = this.auth.datos.email;
+    //this.email = this.auth.datos.email;
   }
 
   ngOnInit(): void {
