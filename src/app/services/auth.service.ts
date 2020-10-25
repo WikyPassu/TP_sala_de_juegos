@@ -102,6 +102,7 @@ export class AuthService {
     })
     .catch((error: any) => {
       logged = false;
+      console.log(error);
     });
     return logged;
   }

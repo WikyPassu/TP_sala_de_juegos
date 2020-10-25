@@ -11,10 +11,8 @@ import { MenuItemsService } from "../../services/menu-items.service";
 export class CerrarSesionComponent implements OnInit {
 
   spinner: boolean = false;
-  //email: string;
 
   constructor(private auth: AuthService, private router: Router, private menu: MenuItemsService) {
-    //this.email = this.auth.datos.email;
   }
 
   ngOnInit(): void {
@@ -28,7 +26,7 @@ export class CerrarSesionComponent implements OnInit {
       this.menu.changeItemStatus(3, true);
       this.menu.changeItemStatus(4, true);
       this.menu.changeItemStatus(5, false);
-      this.router.navigate([""]);
+      this.router.navigate(["/iniciar-sesion"]);
       this.spinner = false;  
     }, 2000);
   }
