@@ -36,6 +36,7 @@ import { IniciarSesionComponent } from './components/iniciar-sesion/iniciar-sesi
 import { RegistrarseComponent } from './components/registrarse/registrarse.component';
 import { CerrarSesionComponent } from './components/cerrar-sesion/cerrar-sesion.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { CartaComponent } from './components/carta/carta.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     IniciarSesionComponent,
     RegistrarseComponent,
     CerrarSesionComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    CartaComponent
   ],
   imports: [
     FormsModule,

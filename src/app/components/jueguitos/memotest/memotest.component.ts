@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemotestComponent implements OnInit {
 
+  srcFrente: string = "assets/piedra.png"
+
   constructor() { }
 
   ngOnInit(): void {
