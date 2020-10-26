@@ -1,23 +1,41 @@
 <table align="center">
     <tr>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
+        <td *ngFor="let item of fila1">
+            <app-carta draggable="false" [srcFrente]="item.src"></app-carta>
+        </td>
     </tr>
     <tr>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
+        <td *ngFor="let item of fila2">
+            <app-carta draggable="false" [srcFrente]="item.src"></app-carta>
+        </td>
     </tr>
     <tr>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
-        <td><app-carta [srcFrente]="srcFrente"></app-carta></td>
+        <td *ngFor="let item of fila3">
+            <app-carta draggable="false" [srcFrente]="item.src"></app-carta>
+        </td>
     </tr>
 </table>
+
+<!-- <table align="center">
+    <tr>
+        <td><app-carta draggable="false" [srcFrente]="srcManzana.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcBanana.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcNaranja.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcPera.src"></app-carta></td>
+    </tr>
+    <tr>
+        <td><app-carta draggable="false" [srcFrente]="srcFrutilla.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcUva.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcManzana.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcBanana.src"></app-carta></td>
+    </tr>
+    <tr>
+        <td><app-carta draggable="false" [srcFrente]="srcNaranja.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcPera.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcFrutilla.src"></app-carta></td>
+        <td><app-carta draggable="false" [srcFrente]="srcUva.src"></app-carta></td>
+    </tr>
+</table> -->
 
 <!-- <mat-grid-list cols="4" rowHeight="14rem">
     <mat-grid-tile>

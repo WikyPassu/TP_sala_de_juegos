@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CartaComponent implements OnInit {
 
   flipped: boolean = true;
-  srcReverso: string = "assets/memotest.png";
+  srcReverso: string = "assets/interrogacion.png";
   @Input() srcFrente: string;
 
   constructor() { }
