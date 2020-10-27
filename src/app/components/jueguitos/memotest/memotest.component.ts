@@ -106,17 +106,22 @@ export class MemotestComponent implements OnInit {
     }
     else{
       this.mensaje = "Upss... esas cartas no son iguales...";
-      for(let i=0; i<this.srcFrente.length; i++){
-        if(this.srcFrente[i].id == this.carta1.id){
-          this.srcFrente[i].flipped = true;
-          this.srcFrente[i].canBeFlipped = true;
+      this.srcFrente.forEach(carta => {
+        if(carta.id == this.carta1.id || carta.id == this.carta2){
+          carta.flipped = true;
+          carta.canBeFlipped = true;
         }
-        if(this.srcFrente[i].id == this.carta2.id){
-          this.srcFrente[i].flipped = true;
-          this.srcFrente[i].canBeFlipped = true;
-        }
-      }
-      
+      });
+      // for(let i=0; i<this.srcFrente.length; i++){
+      //   if(this.srcFrente[i].id == this.carta1.id){
+      //     this.srcFrente[i].flipped = true;
+      //     this.srcFrente[i].canBeFlipped = true;
+      //   }
+      //   if(this.srcFrente[i].id == this.carta2.id){
+      //     this.srcFrente[i].flipped = true;
+      //     this.srcFrente[i].canBeFlipped = true;
+      //   }
+      // }
       this.cartasSeleccionadas = 0;
     }
     console.log(this.srcFrente);
