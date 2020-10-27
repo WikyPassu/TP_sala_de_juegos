@@ -1,20 +1,56 @@
+<br>
 <table align="center">
     <tr>
         <td *ngFor="let item of fila1">
-            <app-carta draggable="false" [srcFrente]="item.src"></app-carta>
+            <app-carta draggable="false"
+             [flipped]="item.flipped"
+             [canBeFlipped]="item.canBeFlipped"
+             [srcFrente]="item.src"
+             (click)="voltearCarta(item.id)">
+            </app-carta>
         </td>
     </tr>
     <tr>
         <td *ngFor="let item of fila2">
-            <app-carta draggable="false" [srcFrente]="item.src"></app-carta>
+            <app-carta draggable="false"
+             [flipped]="item.flipped"
+             [canBeFlipped]="item.canBeFlipped"
+             [srcFrente]="item.src"
+             (click)="voltearCarta(item.id)">
+            </app-carta>
         </td>
     </tr>
     <tr>
         <td *ngFor="let item of fila3">
-            <app-carta draggable="false" [srcFrente]="item.src"></app-carta>
+            <app-carta draggable="false"
+             [flipped]="item.flipped"
+             [canBeFlipped]="item.canBeFlipped"
+             [srcFrente]="item.src"
+             (click)="voltearCarta(item.id)">
+            </app-carta>
         </td>
     </tr>
 </table>
+<br>
+<div *ngIf="activado" style="padding-top: 15px; padding-bottom: 15px;">
+    <h1>
+        ¿Preparado?
+        <br>
+        A ver como está esa <b>memoria</b>...
+        <br><br>
+        ¡Presiona el botón para empezar a jugar!
+    </h1>
+    <button mat-raised-button color="primary" (click)="mostrarCartas()">¡MOSTRAME LAS CARTAS!</button>
+</div>
+
+<div *ngIf="!activado" style="padding-top: 15px; padding-bottom: 15px;">
+    <h1 *ngIf="!mostrarTiempo"><b>{{mensaje}}</b></h1>
+    <div *ngIf="mostrarTiempo">
+        <h1><b>Tiempo transcurrido:<br>{{display}}</b></h1>
+        <h3>{{mensaje}}</h3>
+    </div>
+</div>
+
 
 <!-- <table align="center">
     <tr>

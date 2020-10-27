@@ -30,7 +30,7 @@ export class AdivinaElNumeroComponent implements OnInit {
       } else {
         this.time++;
       }
-      this.display=this.transform( this.time)
+      this.display = this.transform(this.time)
     }, 1000);
   }
   

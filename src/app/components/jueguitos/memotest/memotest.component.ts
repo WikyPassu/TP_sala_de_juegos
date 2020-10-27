@@ -7,31 +7,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemotestComponent implements OnInit {
 
-  srcManzana = {id: 0, src: "assets/manzana.png", flipped: true};
-  srcBanana = {id: 1, src: "assets/banana.png", flipped: true};
-  srcNaranja = {id: 2, src: "assets/naranja.png", flipped: true};
-  srcPera = {id: 3, src: "assets/pera.png", flipped: true};
-  srcFrutilla = {id: 4, src: "assets/frutilla.png", flipped: true};
-  srcUva = {id: 5, src: "assets/uva.png", flipped: true};
+  //Reverso: flipped = true
+  //Cara: flipped = false
 
   srcFrente = [
-    {id: 0, src: "assets/manzana.png", flipped: true},
-    {id: 1, src: "assets/banana.png", flipped: true},
-    {id: 2, src: "assets/naranja.png", flipped: true},
-    {id: 3, src: "assets/pera.png", flipped: true},
-    {id: 4, src: "assets/frutilla.png", flipped: true},
-    {id: 5, src: "assets/uva.png", flipped: true},
-    {id: 6, src: "assets/manzana.png", flipped: true},
-    {id: 7, src: "assets/banana.png", flipped: true},
-    {id: 8, src: "assets/naranja.png", flipped: true},
-    {id: 9, src: "assets/pera.png", flipped: true},
-    {id: 10, src: "assets/frutilla.png", flipped: true},
-    {id: 11, src: "assets/uva.png", flipped: true},
+    {id: 0, src: "assets/manzana.png", flipped: true, canBeFlipped: false},
+    {id: 1, src: "assets/banana.png", flipped: true, canBeFlipped: false},
+    {id: 2, src: "assets/naranja.png", flipped: true, canBeFlipped: false},
+    {id: 3, src: "assets/pera.png", flipped: true, canBeFlipped: false},
+    {id: 4, src: "assets/frutilla.png", flipped: true, canBeFlipped: false},
+    {id: 5, src: "assets/uva.png", flipped: true, canBeFlipped: false},
+    {id: 6, src: "assets/manzana.png", flipped: true, canBeFlipped: false},
+    {id: 7, src: "assets/banana.png", flipped: true, canBeFlipped: false},
+    {id: 8, src: "assets/naranja.png", flipped: true, canBeFlipped: false},
+    {id: 9, src: "assets/pera.png", flipped: true, canBeFlipped: false},
+    {id: 10, src: "assets/frutilla.png", flipped: true, canBeFlipped: false},
+    {id: 11, src: "assets/uva.png", flipped: true, canBeFlipped: false}
   ];
 
   fila1 = [];
   fila2 = [];
   fila3 = [];
+
+  activado: boolean = true;
+  time: number = 0;
+  display;
+  interval;
+  mensaje:string = "Te doy un tiempito para que memorices las cartas...";
+  mostrarTiempo: boolean = false;
+  carta1: any = {}
+  carta2: any = {}
+  cartasSeleccionadas: number = 0;
 
   constructor() {
     this.srcFrente = this.shuffle();
@@ -46,7 +52,7 @@ export class MemotestComponent implements OnInit {
     let temporaryValue;
     let randomIndex;
     // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
+    while (currentIndex !== 0) {
       // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
@@ -68,5 +74,87 @@ export class MemotestComponent implements OnInit {
     for(let i=8; i<12; i++){
       this.fila3.push(this.srcFrente[i]);
     }
+  }
+
+  voltearCarta(id: number){
+    for(let i=0; i<this.srcFrente.length; i++){
+      if(this.srcFrente[i].canBeFlipped){
+        if(this.srcFrente[i].id == id){
+          this.srcFrente[i].canBeFlipped = false;
+          this.cartasSeleccionadas++;
+          if(this.cartasSeleccionadas == 1){
+            this.carta1 = {id: this.srcFrente[i].id, src: this.srcFrente[i].src};
+          }
+          else if(this.cartasSeleccionadas == 2){
+            this.carta2 = {id: this.srcFrente[i].id, src: this.srcFrente[i].src};
+          }
+          break;
+        }
+      }
+    }
+    if(this.cartasSeleccionadas == 2){
+      this.compararCartas();
+    }
+  }
+  //Reverso: flipped = true
+  //Cara: flipped = false
+  compararCartas(){
+    console.log(this.srcFrente);
+    if(this.carta1.src == this.carta2.src){
+      this.mensaje = "¡Bien, completaste un par!";
+      this.cartasSeleccionadas = 0;
+    }
+    else{
+      this.mensaje = "Upss... esas cartas no son iguales...";
+      for(let i=0; i<this.srcFrente.length; i++){
+        if(this.srcFrente[i].id == this.carta1.id){
+          this.srcFrente[i].flipped = true;
+          this.srcFrente[i].canBeFlipped = true;
+        }
+        if(this.srcFrente[i].id == this.carta2.id){
+          this.srcFrente[i].flipped = true;
+          this.srcFrente[i].canBeFlipped = true;
+        }
+      }
+      
+      this.cartasSeleccionadas = 0;
+    }
+    console.log(this.srcFrente);
+  }
+
+  startTimer() {
+    this.interval = setInterval(() => {
+      if (this.time === 0) {
+        this.time++;
+      } else {
+        this.time++;
+      }
+      this.display=this.transform( this.time)
+    }, 1000);
+  }
+  
+  transform(value: number): string {
+       const minutes: number = Math.floor(value / 60);
+       return minutes + ':' + (value - minutes * 60);
+  }
+
+  pauseTimer() {
+    clearInterval(this.interval);
+  }
+
+  mostrarCartas(){
+    this.activado = false;
+    this.srcFrente.forEach(carta => {
+      carta.flipped = false;
+    });
+    setTimeout(() => {
+      this.mostrarTiempo = true;
+      this.mensaje = "Esperando a que elijas un par de cartas...";
+      this.srcFrente.forEach(carta => {
+        carta.canBeFlipped = true;
+        carta.flipped = true;
+      });
+      this.startTimer();
+    }, 5000);
   }
 }

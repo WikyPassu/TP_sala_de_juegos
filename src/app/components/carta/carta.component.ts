@@ -7,8 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CartaComponent implements OnInit {
 
-  flipped: boolean = true;
   srcReverso: string = "assets/interrogacion.png";
+  @Input() flipped: boolean;
+  @Input() canBeFlipped: boolean;
   @Input() srcFrente: string;
 
   constructor() { }
@@ -17,6 +18,9 @@ export class CartaComponent implements OnInit {
   }
 
   voltearCarta(){
-    this.flipped = !this.flipped;
+    // console.log("Carta");
+    if(this.canBeFlipped){
+      this.flipped = !this.flipped;
+    }
   }
 }
