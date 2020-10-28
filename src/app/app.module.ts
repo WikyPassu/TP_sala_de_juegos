@@ -37,6 +37,7 @@ import { RegistrarseComponent } from './components/paginas/registrarse/registrar
 import { CerrarSesionComponent } from './components/paginas/cerrar-sesion/cerrar-sesion.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CartaComponent } from './components/carta/carta.component';
+import { CeldaComponent } from './components/celda/celda.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { CartaComponent } from './components/carta/carta.component';
     RegistrarseComponent,
     CerrarSesionComponent,
     SpinnerComponent,
-    CartaComponent
+    CartaComponent,
+    CeldaComponent
   ],
   imports: [
     FormsModule,
