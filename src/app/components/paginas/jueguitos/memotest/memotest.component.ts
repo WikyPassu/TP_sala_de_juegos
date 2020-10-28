@@ -38,6 +38,8 @@ export class MemotestComponent implements OnInit {
   carta1: any = {}
   carta2: any = {}
   cartasSeleccionadas: number = 0;
+  pares: number = 0;
+  mostrarTabla: boolean = true;
 
   constructor() {
     this.srcFrente = this.shuffle();
@@ -65,6 +67,9 @@ export class MemotestComponent implements OnInit {
   }
 
   llenarFilas(){
+    this.fila1 = [];
+    this.fila2 = [];
+    this.fila3 = [];
     for(let i=0; i<4; i++){
       this.fila1.push(this.srcFrente[i]);
     }
@@ -80,6 +85,7 @@ export class MemotestComponent implements OnInit {
     for(let i=0; i<this.srcFrente.length; i++){
       if(this.srcFrente[i].canBeFlipped){
         if(this.srcFrente[i].id == id){
+          this.srcFrente[i].flipped = false;
           this.srcFrente[i].canBeFlipped = false;
           this.cartasSeleccionadas++;
           if(this.cartasSeleccionadas == 1){
@@ -99,42 +105,38 @@ export class MemotestComponent implements OnInit {
   //Reverso: flipped = true
   //Cara: flipped = false
   compararCartas(){
-    console.log(this.srcFrente);
     if(this.carta1.src == this.carta2.src){
       this.mensaje = "¡Bien, completaste un par!";
       this.cartasSeleccionadas = 0;
+      this.pares++;
+      if(this.pares == 6){
+        this.pauseTimer();
+        this.mensaje = "¡GANASTE!";
+      }
     }
     else{
       this.mensaje = "Upss... esas cartas no son iguales...";
-      this.srcFrente.forEach(carta => {
-        if(carta.id == this.carta1.id || carta.id == this.carta2){
-          carta.flipped = true;
-          carta.canBeFlipped = true;
-        }
-      });
-      // for(let i=0; i<this.srcFrente.length; i++){
-      //   if(this.srcFrente[i].id == this.carta1.id){
-      //     this.srcFrente[i].flipped = true;
-      //     this.srcFrente[i].canBeFlipped = true;
-      //   }
-      //   if(this.srcFrente[i].id == this.carta2.id){
-      //     this.srcFrente[i].flipped = true;
-      //     this.srcFrente[i].canBeFlipped = true;
-      //   }
-      // }
-      this.cartasSeleccionadas = 0;
+      setTimeout(() => {
+        this.srcFrente.forEach(carta => {
+          if(carta.id == this.carta1.id || carta.id == this.carta2.id){
+            carta.flipped = true;
+            carta.canBeFlipped = true;
+          }
+        });
+        this.cartasSeleccionadas = 0;  
+      }, 800);
     }
-    console.log(this.srcFrente);
   }
 
   startTimer() {
     this.interval = setInterval(() => {
-      if (this.time === 0) {
+      if(this.time === 0){
         this.time++;
-      } else {
+      }else
+      {
         this.time++;
       }
-      this.display=this.transform( this.time)
+      this.display = this.transform(this.time)
     }, 1000);
   }
   
@@ -161,5 +163,23 @@ export class MemotestComponent implements OnInit {
       });
       this.startTimer();
     }, 5000);
+  }
+
+  volverAJugar(){
+    this.mostrarTabla = false;
+    this.mostrarTiempo = false;
+    this.mensaje = "";
+    this.srcFrente.forEach(carta => {
+      carta.flipped = true;
+    });
+    this.srcFrente = this.shuffle();
+    this.llenarFilas();
+    setTimeout(() => {
+      this.mostrarTabla = true;
+      this.activado = true;
+      this.time = 0;
+      this.pares = 0;
+      this.mensaje = "Te doy un tiempito para que memorices las cartas...";
+    }, 500);
   }
 }

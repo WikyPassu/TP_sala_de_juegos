@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from "../../services/auth.service";
-import { MenuItemsService } from "../../services/menu-items.service";
+import { AuthService } from "../../../services/auth.service";
+import { MenuItemsService } from "../../../services/menu-items.service";
 
 @Component({
   selector: 'app-cerrar-sesion',

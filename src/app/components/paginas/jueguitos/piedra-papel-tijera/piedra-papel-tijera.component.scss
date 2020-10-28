@@ -1,15 +1,23 @@
 #usuario{
+    position: absolute;
+    top: 8%;
+    left: 5%;
     width: 30%;
     //background-color: rgb(221, 184, 255);
     display: inline-block;
 }
 
 #centro{
+    //position: absolute;
+    top: 30%;
     width: 40%;
     display: inline-block;
 }
 
 #ia{
+    position: absolute;
+    top: 8%;
+    right: 5%;
     width: 30%;
     //background-color: rgb(199, 139, 255);
     display: inline-block;

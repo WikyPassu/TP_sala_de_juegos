@@ -18,7 +18,6 @@ export class CartaComponent implements OnInit {
   }
 
   voltearCarta(){
-    // console.log("Carta");
     if(this.canBeFlipped){
       this.flipped = !this.flipped;
     }

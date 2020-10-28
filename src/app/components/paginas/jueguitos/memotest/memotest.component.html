@@ -1,5 +1,5 @@
 <br>
-<table align="center">
+<table *ngIf="mostrarTabla" align="center">
     <tr>
         <td *ngFor="let item of fila1">
             <app-carta draggable="false"
@@ -31,13 +31,11 @@
         </td>
     </tr>
 </table>
-<br>
+
 <div *ngIf="activado" style="padding-top: 15px; padding-bottom: 15px;">
     <h1>
-        ¿Preparado?
-        <br>
         A ver como está esa <b>memoria</b>...
-        <br><br>
+        <br>
         ¡Presiona el botón para empezar a jugar!
     </h1>
     <button mat-raised-button color="primary" (click)="mostrarCartas()">¡MOSTRAME LAS CARTAS!</button>
@@ -48,30 +46,9 @@
     <div *ngIf="mostrarTiempo">
         <h1><b>Tiempo transcurrido:<br>{{display}}</b></h1>
         <h3>{{mensaje}}</h3>
+        <button mat-raised-button color="primary" *ngIf="pares==6" (click)="volverAJugar()">Volver a jugar</button>
     </div>
 </div>
-
-
-<!-- <table align="center">
-    <tr>
-        <td><app-carta draggable="false" [srcFrente]="srcManzana.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcBanana.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcNaranja.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcPera.src"></app-carta></td>
-    </tr>
-    <tr>
-        <td><app-carta draggable="false" [srcFrente]="srcFrutilla.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcUva.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcManzana.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcBanana.src"></app-carta></td>
-    </tr>
-    <tr>
-        <td><app-carta draggable="false" [srcFrente]="srcNaranja.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcPera.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcFrutilla.src"></app-carta></td>
-        <td><app-carta draggable="false" [srcFrente]="srcUva.src"></app-carta></td>
-    </tr>
-</table> -->
 
 <!-- <mat-grid-list cols="4" rowHeight="14rem">
     <mat-grid-tile>
