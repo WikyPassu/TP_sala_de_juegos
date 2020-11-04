@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-piedra-papel-tijera',
@@ -14,11 +15,21 @@ export class PiedraPapelTijeraComponent implements OnInit {
   opUser: number;
   opIA: number;
   resultado: string = "Esperando...";
+  partidas = new Array();
+  partidasGanadas = new Array();
 
-  constructor() {
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit(): void {
+    this.auth.traerPartidasUsuarioPPT().subscribe(lista => {
+      this.partidas = lista;
+      this.jugadas = this.partidas.length;
+    });
+    this.auth.traerGanadasUsuarioPPT().subscribe(lista => {
+      this.partidasGanadas = lista;
+      this.ganadas = this.partidasGanadas.length;
+    });
   }
 
   jugar(opcion: number){
@@ -64,22 +75,23 @@ export class PiedraPapelTijeraComponent implements OnInit {
     }
     if(this.opUser == 0 && this.opIA == 2){
       this.resultado = "¡Victoria!";
-      this.ganadas++;
+      //this.ganadas++;
     }
     if(this.opUser == 1 && this.opIA == 2){
       this.resultado = "Derrota :(";
     }
     if(this.opUser == 1 && this.opIA == 0){
       this.resultado = "¡Victoria!";
-      this.ganadas++;
+      //this.ganadas++;
     }
     if(this.opUser == 2 && this.opIA == 0){
       this.resultado = "Derrota :(";
     }
     if(this.opUser == 2 && this.opIA == 1){
       this.resultado = "¡Victoria!";
-      this.ganadas++;
+      //this.ganadas++;
     }
-    this.jugadas++;
+    //this.jugadas++;
+    this.auth.guardarPartidaPPT(this.resultado);    
   }
 }

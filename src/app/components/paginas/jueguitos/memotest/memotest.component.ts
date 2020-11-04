@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-memotest',
@@ -10,7 +11,7 @@ export class MemotestComponent implements OnInit {
   //Reverso: flipped = true
   //Cara: flipped = false
 
-  srcFrente = [
+  mazo = [
     {id: 0, src: "assets/manzana.png", flipped: true, canBeFlipped: false},
     {id: 1, src: "assets/banana.png", flipped: true, canBeFlipped: false},
     {id: 2, src: "assets/naranja.png", flipped: true, canBeFlipped: false},
@@ -40,17 +41,17 @@ export class MemotestComponent implements OnInit {
   cartasSeleccionadas: number = 0;
   pares: number = 0;
   mostrarTabla: boolean = true;
+  intentos: number = 0;
 
-  constructor() {
-    this.srcFrente = this.shuffle();
+  constructor(private auth: AuthService) { }
+
+  ngOnInit(): void {
+    this.mazo = this.shuffle();
     this.llenarFilas();
   }
 
-  ngOnInit(): void {
-  }
-
   shuffle() {
-    let currentIndex = this.srcFrente.length;
+    let currentIndex = this.mazo.length;
     let temporaryValue;
     let randomIndex;
     // While there remain elements to shuffle...
@@ -59,11 +60,11 @@ export class MemotestComponent implements OnInit {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
       // And swap it with the current element.
-      temporaryValue = this.srcFrente[currentIndex];
-      this.srcFrente[currentIndex] = this.srcFrente[randomIndex];
-      this.srcFrente[randomIndex] = temporaryValue;
+      temporaryValue = this.mazo[currentIndex];
+      this.mazo[currentIndex] = this.mazo[randomIndex];
+      this.mazo[randomIndex] = temporaryValue;
     }
-    return this.srcFrente;
+    return this.mazo;
   }
 
   llenarFilas(){
@@ -71,40 +72,44 @@ export class MemotestComponent implements OnInit {
     this.fila2 = [];
     this.fila3 = [];
     for(let i=0; i<4; i++){
-      this.fila1.push(this.srcFrente[i]);
+      this.fila1.push(this.mazo[i]);
     }
     for(let i=4; i<8; i++){
-      this.fila2.push(this.srcFrente[i]);
+      this.fila2.push(this.mazo[i]);
     }
     for(let i=8; i<12; i++){
-      this.fila3.push(this.srcFrente[i]);
+      this.fila3.push(this.mazo[i]);
     }
   }
 
   voltearCarta(id: number){
-    for(let i=0; i<this.srcFrente.length; i++){
-      if(this.srcFrente[i].canBeFlipped){
-        if(this.srcFrente[i].id == id){
-          this.srcFrente[i].flipped = false;
-          this.srcFrente[i].canBeFlipped = false;
+    for(let i=0; i<this.mazo.length; i++){
+      if(this.mazo[i].canBeFlipped){
+        if(this.mazo[i].id == id){
+          this.mazo[i].flipped = false;
+          this.mazo[i].canBeFlipped = false;
           this.cartasSeleccionadas++;
           if(this.cartasSeleccionadas == 1){
-            this.carta1 = {id: this.srcFrente[i].id, src: this.srcFrente[i].src};
+            this.carta1 = {id: this.mazo[i].id, src: this.mazo[i].src};
           }
           else if(this.cartasSeleccionadas == 2){
-            this.carta2 = {id: this.srcFrente[i].id, src: this.srcFrente[i].src};
+            this.carta2 = {id: this.mazo[i].id, src: this.mazo[i].src};
           }
           break;
         }
       }
     }
     if(this.cartasSeleccionadas == 2){
+      this.mazo.forEach(carta => {
+        carta.canBeFlipped = false;
+      });
       this.compararCartas();
     }
   }
   //Reverso: flipped = true
   //Cara: flipped = false
   compararCartas(){
+    this.intentos++;
     if(this.carta1.src == this.carta2.src){
       this.mensaje = "¡Bien, completaste un par!";
       this.cartasSeleccionadas = 0;
@@ -112,18 +117,24 @@ export class MemotestComponent implements OnInit {
       if(this.pares == 6){
         this.pauseTimer();
         this.mensaje = "¡GANASTE!";
+        this.auth.guardarPartidaMEM(this.intentos, this.time);    
+      }
+      else{
+        this.mazo.forEach(carta => {
+          carta.canBeFlipped = true;
+        });
       }
     }
     else{
       this.mensaje = "Upss... esas cartas no son iguales...";
       setTimeout(() => {
-        this.srcFrente.forEach(carta => {
+        this.mazo.forEach(carta => {
+          carta.canBeFlipped = true;
           if(carta.id == this.carta1.id || carta.id == this.carta2.id){
             carta.flipped = true;
-            carta.canBeFlipped = true;
           }
         });
-        this.cartasSeleccionadas = 0;  
+        this.cartasSeleccionadas = 0;
       }, 800);
     }
   }
@@ -151,13 +162,13 @@ export class MemotestComponent implements OnInit {
 
   mostrarCartas(){
     this.activado = false;
-    this.srcFrente.forEach(carta => {
+    this.mazo.forEach(carta => {
       carta.flipped = false;
     });
     setTimeout(() => {
       this.mostrarTiempo = true;
       this.mensaje = "Esperando a que elijas un par de cartas...";
-      this.srcFrente.forEach(carta => {
+      this.mazo.forEach(carta => {
         carta.canBeFlipped = true;
         carta.flipped = true;
       });
@@ -169,10 +180,11 @@ export class MemotestComponent implements OnInit {
     this.mostrarTabla = false;
     this.mostrarTiempo = false;
     this.mensaje = "";
-    this.srcFrente.forEach(carta => {
+    this.intentos = 0;
+    this.mazo.forEach(carta => {
       carta.flipped = true;
     });
-    this.srcFrente = this.shuffle();
+    this.mazo = this.shuffle();
     this.llenarFilas();
     setTimeout(() => {
       this.mostrarTabla = true;

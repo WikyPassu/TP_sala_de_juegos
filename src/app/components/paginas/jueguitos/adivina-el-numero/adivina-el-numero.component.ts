@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-adivina-el-numero',
@@ -17,10 +18,15 @@ export class AdivinaElNumeroComponent implements OnInit {
   ganadas: number = 0;
   intentos: number = 0;
   disabled: boolean = false;
+  partidas = new Array();
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.traerPartidasUsuarioAEN().subscribe(lista => {
+      this.partidas = lista;
+      this.ganadas = this.partidas.length;
+    });
   }
 
   startTimer() {
@@ -64,10 +70,11 @@ export class AdivinaElNumeroComponent implements OnInit {
     }
     else if(this.numero == this.numeroAdivinar){
       this.intentos++;
-      this.ganadas++;
+      //this.ganadas++;
       this.disabled = true;
       this.pauseTimer();
       this.mensaje = `¡ADIVINASTE! ¡EL NÚMERO ERA ${this.numeroAdivinar}!`;
+      this.auth.guardarPartidaAEN(this.intentos, this.time);
     }
   }
 

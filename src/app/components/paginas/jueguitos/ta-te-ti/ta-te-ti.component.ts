@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-ta-te-ti',
@@ -15,10 +16,20 @@ export class TaTeTiComponent implements OnInit {
   turnoActual: string;
   jugadas: number = 0;
   ganadas: number = 0;
+  partidas = new Array();
+  partidasGanadas = new Array();
 
-  constructor() { }
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.traerPartidasUsuarioTTT().subscribe(lista => {
+      this.partidas = lista;
+      this.jugadas = this.partidas.length;
+    });
+    this.auth.traerGanadasUsuarioTTT().subscribe(lista => {
+      this.partidasGanadas = lista;
+      this.ganadas = this.partidasGanadas.length;
+    });
     this.empezarJuegoNuevo();
   }
 
@@ -95,18 +106,21 @@ export class TaTeTiComponent implements OnInit {
       this.bloqueado = true;
       ganador = "Empate";
       this.ganador = "¡Hay empate!";
-      this.jugadas++;
+      //this.jugadas++;
+      this.auth.guardarPartidaTTT(this.ganador);
     }
     else if(ganador != null){
       this.bloqueado = true;
       if(ganador == "X"){
         this.ganador = "¡Ganó el Usuario!";
-        this.ganadas++;
+        //this.ganadas++;
+        this.auth.guardarPartidaTTT(this.ganador);
       }
       else if(ganador == "O"){
         this.ganador = "¡Ganó la IA!";
+        this.auth.guardarPartidaTTT(this.ganador);
       }
-      this.jugadas++;
+      //this.jugadas++;
     }
 
     return ganador;

@@ -46,45 +46,7 @@
     <div *ngIf="mostrarTiempo">
         <h1><b>Tiempo transcurrido:<br>{{display}}</b></h1>
         <h3>{{mensaje}}</h3>
+        <strong><p>Intentos esta ronda: {{intentos}}</p></strong>
         <button mat-raised-button color="primary" *ngIf="pares==6" (click)="volverAJugar()">Volver a jugar</button>
     </div>
 </div>
-
-<!-- <mat-grid-list cols="4" rowHeight="14rem">
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-carta [srcFrente]="srcFrente"></app-carta>
-    </mat-grid-tile>
-</mat-grid-list> -->
