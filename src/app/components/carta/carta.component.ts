@@ -10,6 +10,7 @@ export class CartaComponent implements OnInit {
   srcReverso: string = "assets/interrogacion.png";
   @Input() flipped: boolean;
   @Input() canBeFlipped: boolean;
+  @Input() yaSeleccionada: boolean;
   @Input() srcFrente: string;
 
   constructor() { }
@@ -18,8 +19,10 @@ export class CartaComponent implements OnInit {
   }
 
   voltearCarta(){
-    if(this.canBeFlipped){
-      this.flipped = !this.flipped;
+    if(!this.yaSeleccionada){
+      if(this.canBeFlipped){
+        this.flipped = !this.flipped;
+      }
     }
   }
 }

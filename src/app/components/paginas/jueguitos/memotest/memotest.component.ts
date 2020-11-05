@@ -12,18 +12,18 @@ export class MemotestComponent implements OnInit {
   //Cara: flipped = false
 
   mazo = [
-    {id: 0, src: "assets/manzana.png", flipped: true, canBeFlipped: false},
-    {id: 1, src: "assets/banana.png", flipped: true, canBeFlipped: false},
-    {id: 2, src: "assets/naranja.png", flipped: true, canBeFlipped: false},
-    {id: 3, src: "assets/pera.png", flipped: true, canBeFlipped: false},
-    {id: 4, src: "assets/frutilla.png", flipped: true, canBeFlipped: false},
-    {id: 5, src: "assets/uva.png", flipped: true, canBeFlipped: false},
-    {id: 6, src: "assets/manzana.png", flipped: true, canBeFlipped: false},
-    {id: 7, src: "assets/banana.png", flipped: true, canBeFlipped: false},
-    {id: 8, src: "assets/naranja.png", flipped: true, canBeFlipped: false},
-    {id: 9, src: "assets/pera.png", flipped: true, canBeFlipped: false},
-    {id: 10, src: "assets/frutilla.png", flipped: true, canBeFlipped: false},
-    {id: 11, src: "assets/uva.png", flipped: true, canBeFlipped: false}
+    {id: 0, src: "assets/manzana.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 1, src: "assets/banana.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 2, src: "assets/naranja.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 3, src: "assets/pera.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 4, src: "assets/frutilla.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 5, src: "assets/uva.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 6, src: "assets/manzana.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 7, src: "assets/banana.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 8, src: "assets/naranja.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 9, src: "assets/pera.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 10, src: "assets/frutilla.png", flipped: true, canBeFlipped: false, yaSeleccionada: false},
+    {id: 11, src: "assets/uva.png", flipped: true, canBeFlipped: false, yaSeleccionada: false}
   ];
 
   fila1 = [];
@@ -84,7 +84,7 @@ export class MemotestComponent implements OnInit {
 
   voltearCarta(id: number){
     for(let i=0; i<this.mazo.length; i++){
-      if(this.mazo[i].canBeFlipped){
+      if(this.mazo[i].canBeFlipped && !this.mazo[i].yaSeleccionada){
         if(this.mazo[i].id == id){
           this.mazo[i].flipped = false;
           this.mazo[i].canBeFlipped = false;
@@ -122,6 +122,9 @@ export class MemotestComponent implements OnInit {
       else{
         this.mazo.forEach(carta => {
           carta.canBeFlipped = true;
+          if(carta.id == this.carta1.id || carta.id == this.carta2.id){
+            carta.yaSeleccionada = true;
+          }
         });
       }
     }
@@ -183,6 +186,7 @@ export class MemotestComponent implements OnInit {
     this.intentos = 0;
     this.mazo.forEach(carta => {
       carta.flipped = true;
+      carta.yaSeleccionada = false;
     });
     this.mazo = this.shuffle();
     this.llenarFilas();

@@ -12,10 +12,12 @@ export class CerrarSesionComponent implements OnInit {
 
   spinner: boolean = false;
 
-  constructor(private auth: AuthService, private router: Router, private menu: MenuItemsService) {
-  }
+  constructor(private auth: AuthService, private router: Router, private menu: MenuItemsService) { }
+
+  usuario: string = "";
 
   ngOnInit(): void {
+    this.usuario = this.auth.getCurrentUser();
   }
 
   logout(){

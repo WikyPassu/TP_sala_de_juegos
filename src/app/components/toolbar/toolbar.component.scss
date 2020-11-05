@@ -1,5 +1,7 @@
 mat-toolbar{
+    position: fixed;
     background-image: linear-gradient(to right, black,blueviolet);
+    z-index: 9999;
 }
 
 button{

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from "./components/paginas/home/home.component";
+import { PerfilComponent } from "./components/paginas/perfil/perfil.component";
 import { JuegosComponent } from "./components/paginas/juegos/juegos.component";
 import { AcercaDeComponent } from "./components/paginas/acerca-de/acerca-de.component";
 import { NotFoundComponent } from "./components/paginas/not-found/not-found.component";
@@ -20,6 +21,11 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
+    canActivate: [LoggedInGuard]
   },
   {
     path: 'juegos',

@@ -1,0 +1,45 @@
+<br>
+<h1><b>Mi perfil: {{usuario}}</b></h1>
+<h3>Tus estadísticas:</h3>
+<div align="center">
+    <div class="juego">
+        <br>
+        <img src="../../../../assets/piedrapapeltijera.png">
+        <p><b>- Partidas jugadas: </b>{{jugadasPPT}}</p>
+        <p><b>- Ratio de victorias: </b>{{victoriasPPT}}</p>
+        <p><b>- Ratio de empates: </b>{{empatesPPT}}</p>
+        <p><b>- Ratio de derrotas: </b>{{derrotasPPT}}</p>
+    </div>
+    <br>
+    <div class="juego">
+        <br>
+        <img src="../../../../assets/adivinanumero.png">
+        <p><b>- Partidas jugadas: </b>{{jugadasAEN}}</p>
+        <p><b>- Mejor tiempo histórico: </b>{{mejorTiempoAEN}}</p>
+        <p><b>- Mejores 3 partidas:</b></p>
+        <div *ngFor="let partida of mejoresPartidasAEN; let i = index">
+            <p><b>{{i+1}}°</b> Tiempo: {{partida.tiempo}} con {{partida.intentos}} intentos.</p>
+        </div>
+    </div>
+    <br>
+    <div class="juego">
+        <br>
+        <img src="../../../../assets/tateti.png">
+        <p><b>- Partidas jugadas: </b>{{jugadasTTT}}</p>
+        <p><b>- Ratio de victorias: </b>{{victoriasTTT}}</p>
+        <p><b>- Ratio de empates: </b>{{empatesTTT}}</p>
+        <p><b>- Ratio de derrotas: </b>{{derrotasTTT}}</p>
+    </div>
+    <br>
+    <div class="juego">
+        <br>
+        <img src="../../../../assets/memotest.png">
+        <p><b>- Partidas jugadas: </b>{{jugadasMEM}}</p>
+        <p><b>- Mejor tiempo histórico: </b>{{mejorTiempoMEM}}</p>
+        <p><b>- Mejores 3 partidas:</b></p>
+        <div *ngFor="let partida of mejoresPartidasMEM; let i = index">
+            <p><b>{{i+1}}°</b> Tiempo: {{partida.tiempo}} con {{partida.intentos}} intentos.</p>
+        </div>
+    </div>
+</div>
+<br>

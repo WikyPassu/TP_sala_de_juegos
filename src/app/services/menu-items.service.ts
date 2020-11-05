@@ -14,6 +14,12 @@ export class MenuItemsService {
       activo: true
     },
     {
+      texto: "Mi perfil",
+      icono: "person",
+      ruta: "perfil",
+      activo: false
+    },
+    {
       texto: "Juegos",
       icono: "sports_esports",
       ruta: "juegos",

@@ -17,10 +17,13 @@ export class AuthService {
     this.auth.authState.subscribe(state => {
       this.authState = state;
       if(this.authState != null){
+        this.menu.changeItemStatus(0, true);
         this.menu.changeItemStatus(1, true);
-        this.menu.changeItemStatus(3, false);
+        this.menu.changeItemStatus(2, true);
+        this.menu.changeItemStatus(3, true);
         this.menu.changeItemStatus(4, false);
-        this.menu.changeItemStatus(5, true);
+        this.menu.changeItemStatus(5, false);
+        this.menu.changeItemStatus(6, true);
       }
     });
   }
@@ -30,10 +33,13 @@ export class AuthService {
       this.auth.signInWithEmailAndPassword(email, password)
       .then(user => {
         this.logged = true;
+        this.menu.changeItemStatus(0, true);
         this.menu.changeItemStatus(1, true);
-        this.menu.changeItemStatus(3, false);
+        this.menu.changeItemStatus(2, true);
+        this.menu.changeItemStatus(3, true);
         this.menu.changeItemStatus(4, false);
-        this.menu.changeItemStatus(5, true);
+        this.menu.changeItemStatus(5, false);
+        this.menu.changeItemStatus(6, true);
         resolve(user);
       })
       .catch(error => rejected(error));
@@ -64,10 +70,13 @@ export class AuthService {
       this.logged = false;
       retorno = true;
       this.setDatos(null);
+      this.menu.changeItemStatus(0, true);
       this.menu.changeItemStatus(1, false);
+      this.menu.changeItemStatus(2, false);
       this.menu.changeItemStatus(3, true);
       this.menu.changeItemStatus(4, true);
-      this.menu.changeItemStatus(5, false);
+      this.menu.changeItemStatus(5, true);
+      this.menu.changeItemStatus(6, false);
     })
     .catch(error => {
       console.log(error);
@@ -137,6 +146,16 @@ export class AuthService {
     .where("resultado", "==", "¡Victoria!")).valueChanges();
   }
 
+  traerEmpatesUsuarioPPT(){
+    return this.db.collection("ppt", ref => ref.where("usuario", "==", this.getCurrentUser())
+    .where("resultado", "==", "Empate")).valueChanges();
+  }
+
+  traerDerrotasUsuarioPPT(){
+    return this.db.collection("ppt", ref => ref.where("usuario", "==", this.getCurrentUser())
+    .where("resultado", "==", "Derrota :(")).valueChanges();
+  }
+
   // Funciones AEN
 
   guardarPartidaAEN(intentos: number, tiempo: number){
@@ -153,6 +172,11 @@ export class AuthService {
 
   traerPartidasUsuarioAEN(){
     return this.db.collection("aen", ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
+  }
+
+  traerMejoresPartidasUsuarioAEN(){
+    return this.db.collection("aen", ref => ref.where("usuario", "==", this.getCurrentUser())
+    .orderBy("tiempo", "asc").limit(3)).valueChanges();
   }
 
   // Funciones TTT
@@ -177,6 +201,16 @@ export class AuthService {
     .where("resultado", "==", "¡Ganó el Usuario!")).valueChanges();
   }
 
+  traerEmpatesUsuarioTTT(){
+    return this.db.collection("ttt", ref => ref.where("usuario", "==", this.getCurrentUser())
+    .where("resultado", "==", "¡Hay empate!")).valueChanges();
+  }
+
+  traerDerrotasUsuarioTTT(){
+    return this.db.collection("ttt", ref => ref.where("usuario", "==", this.getCurrentUser())
+    .where("resultado", "==", "¡Ganó la IA!")).valueChanges();
+  }
+
   // Funciones MEM
 
   guardarPartidaMEM(intentos: number, tiempo: number){
@@ -193,5 +227,10 @@ export class AuthService {
 
   traerPartidasUsuarioMEM(){
     return this.db.collection("mem", ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
+  }
+
+  traerMejoresPartidasUsuarioMEM(){
+    return this.db.collection("mem", ref => ref.where("usuario", "==", this.getCurrentUser())
+    .orderBy("tiempo", "asc").limit(3)).valueChanges();
   }
 }
