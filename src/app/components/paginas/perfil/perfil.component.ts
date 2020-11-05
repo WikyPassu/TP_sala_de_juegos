@@ -64,7 +64,6 @@ export class PerfilComponent implements OnInit {
       this.mejorTiempoAEN = this.transform(min) + ` con ${intentos} intentos.`;
     });
     this.auth.traerMejoresPartidasUsuarioAEN().subscribe(res => {
-      console.log(res);
       this.mejoresPartidasAEN = res;
       this.mejoresPartidasAEN.forEach(partida => {
         partida.tiempo = this.transform(partida.tiempo);
@@ -102,7 +101,6 @@ export class PerfilComponent implements OnInit {
       this.mejorTiempoMEM = this.transform(min) + ` con ${intentos} intentos.`;
     });
     this.auth.traerMejoresPartidasUsuarioMEM().subscribe(res => {
-      console.log(res);
       this.mejoresPartidasMEM = res;
       this.mejoresPartidasMEM.forEach(partida => {
         partida.tiempo = this.transform(partida.tiempo);
