@@ -117,7 +117,7 @@ export class MemotestComponent implements OnInit {
       if(this.pares == 6){
         this.pauseTimer();
         this.mensaje = "¡GANASTE!";
-        this.auth.guardarPartidaMEM(this.intentos, this.time);    
+        this.auth.guardarPartidaTiempo("mem", this.intentos, this.time);    
       }
       else{
         this.mazo.forEach(carta => {

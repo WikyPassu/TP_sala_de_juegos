@@ -22,11 +22,11 @@ export class PiedraPapelTijeraComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.auth.traerPartidasUsuarioPPT().subscribe(lista => {
+    this.auth.traerPartidasUsuarioPorJuego("ppt").subscribe(lista => {
       this.partidas = lista;
       this.jugadas = this.partidas.length;
     });
-    this.auth.traerGanadasUsuarioPPT().subscribe(lista => {
+    this.auth.traerResultadoUsuarioPorJuego("ppt", "¡Victoria!").subscribe(lista => {
       this.partidasGanadas = lista;
       this.ganadas = this.partidasGanadas.length;
     });
@@ -92,6 +92,6 @@ export class PiedraPapelTijeraComponent implements OnInit {
       //this.ganadas++;
     }
     //this.jugadas++;
-    this.auth.guardarPartidaPPT(this.resultado);    
+    this.auth.guardarPartidaResultado("ppt", this.resultado);    
   }
 }

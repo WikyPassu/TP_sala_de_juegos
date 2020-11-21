@@ -124,12 +124,12 @@ export class AuthService {
     return logged;
   }
 
-  // Funciones PPT
+  // Funciones Juegos
 
-  guardarPartidaPPT(resultado: string){
+  guardarPartidaResultado(coleccion: string, resultado: string){
     let fecha = Date.now();
-    let id = this.getCurrentUser() + "." + fecha + ".ppt";
-    this.db.collection("ppt").doc(id).set({
+    let id = this.getCurrentUser() + "." + fecha + "." + coleccion;
+    this.db.collection(coleccion).doc(id).set({
       id: id,
       usuario: this.getCurrentUser(),
       fecha: fecha,
@@ -137,31 +137,10 @@ export class AuthService {
     });
   }
 
-  traerPartidasUsuarioPPT(){
-    return this.db.collection("ppt", ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
-  }
-
-  traerGanadasUsuarioPPT(){
-    return this.db.collection("ppt", ref => ref.where("usuario", "==", this.getCurrentUser())
-    .where("resultado", "==", "¡Victoria!")).valueChanges();
-  }
-
-  traerEmpatesUsuarioPPT(){
-    return this.db.collection("ppt", ref => ref.where("usuario", "==", this.getCurrentUser())
-    .where("resultado", "==", "Empate")).valueChanges();
-  }
-
-  traerDerrotasUsuarioPPT(){
-    return this.db.collection("ppt", ref => ref.where("usuario", "==", this.getCurrentUser())
-    .where("resultado", "==", "Derrota :(")).valueChanges();
-  }
-
-  // Funciones AEN
-
-  guardarPartidaAEN(intentos: number, tiempo: number){
+  guardarPartidaTiempo(coleccion: string, intentos: number, tiempo: number){
     let fecha = Date.now();
-    let id = this.getCurrentUser() + "." + fecha + ".aen";
-    this.db.collection("aen").doc(id).set({
+    let id = this.getCurrentUser() + "." + fecha + "." + coleccion;
+    this.db.collection(coleccion).doc(id).set({
       id: id,
       usuario: this.getCurrentUser(),
       fecha: fecha,
@@ -170,67 +149,17 @@ export class AuthService {
     });
   }
 
-  traerPartidasUsuarioAEN(){
-    return this.db.collection("aen", ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
+  traerPartidasUsuarioPorJuego(coleccion: string){
+    return this.db.collection(coleccion, ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
   }
 
-  traerMejoresPartidasUsuarioAEN(){
-    return this.db.collection("aen", ref => ref.where("usuario", "==", this.getCurrentUser())
-    .orderBy("tiempo", "asc").limit(3)).valueChanges();
+  traerResultadoUsuarioPorJuego(coleccion: string, resultado: string){
+    return this.db.collection(coleccion, ref => ref.where("usuario", "==", this.getCurrentUser())
+    .where("resultado", "==", resultado)).valueChanges();
   }
 
-  // Funciones TTT
-
-  guardarPartidaTTT(resultado: string){
-    let fecha = Date.now();
-    let id = this.getCurrentUser() + "." + fecha + ".ttt";
-    this.db.collection("ttt").doc(id).set({
-      id: id,
-      usuario: this.getCurrentUser(),
-      fecha: fecha,
-      resultado: resultado
-    });
-  }
-
-  traerPartidasUsuarioTTT(){
-    return this.db.collection("ttt", ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
-  }
-
-  traerGanadasUsuarioTTT(){
-    return this.db.collection("ttt", ref => ref.where("usuario", "==", this.getCurrentUser())
-    .where("resultado", "==", "¡Ganó el Usuario!")).valueChanges();
-  }
-
-  traerEmpatesUsuarioTTT(){
-    return this.db.collection("ttt", ref => ref.where("usuario", "==", this.getCurrentUser())
-    .where("resultado", "==", "¡Hay empate!")).valueChanges();
-  }
-
-  traerDerrotasUsuarioTTT(){
-    return this.db.collection("ttt", ref => ref.where("usuario", "==", this.getCurrentUser())
-    .where("resultado", "==", "¡Ganó la IA!")).valueChanges();
-  }
-
-  // Funciones MEM
-
-  guardarPartidaMEM(intentos: number, tiempo: number){
-    let fecha = Date.now();
-    let id = this.getCurrentUser() + "." + fecha + ".mem";
-    this.db.collection("mem").doc(id).set({
-      id: id,
-      usuario: this.getCurrentUser(),
-      fecha: fecha,
-      intentos: intentos,
-      tiempo: tiempo
-    });
-  }
-
-  traerPartidasUsuarioMEM(){
-    return this.db.collection("mem", ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
-  }
-
-  traerMejoresPartidasUsuarioMEM(){
-    return this.db.collection("mem", ref => ref.where("usuario", "==", this.getCurrentUser())
+  traerMejoresPartidasUsuarioPorJuego(coleccion: string){
+    return this.db.collection(coleccion, ref => ref.where("usuario", "==", this.getCurrentUser())
     .orderBy("tiempo", "asc").limit(3)).valueChanges();
   }
 }

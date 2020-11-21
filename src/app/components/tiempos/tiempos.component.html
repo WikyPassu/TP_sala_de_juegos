@@ -1,0 +1,15 @@
+<div class="juego">
+    <br>
+    <img [src]="src">
+    <div *ngIf="jugadas != 0">
+        <p><b>- Partidas jugadas: </b>{{jugadas}}</p>
+        <p><b>- Mejor tiempo histórico: </b>{{mejorTiempo}}</p>
+        <p><b>- Mejores 3 partidas:</b></p>
+        <div *ngFor="let partida of mejoresPartidas; let i = index">
+            <p><b>{{i+1}}°</b> Tiempo: {{partida.tiempo}} con {{partida.intentos}} intentos.</p>
+        </div>
+    </div>
+    <div *ngIf="jugadas == 0">
+        <p><b>No es posible mostrar las estadísticas porque nunca has jugado una partida.</b></p>
+    </div>
+</div>

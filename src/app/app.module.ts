@@ -39,6 +39,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { CartaComponent } from './components/carta/carta.component';
 import { CeldaComponent } from './components/celda/celda.component';
 import { PerfilComponent } from './components/paginas/perfil/perfil.component';
+import { RatiosComponent } from './components/ratios/ratios.component';
+import { TiemposComponent } from './components/tiempos/tiempos.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import { PerfilComponent } from './components/paginas/perfil/perfil.component';
     SpinnerComponent,
     CartaComponent,
     CeldaComponent,
-    PerfilComponent
+    PerfilComponent,
+    RatiosComponent,
+    TiemposComponent
   ],
   imports: [
     FormsModule,

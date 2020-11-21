@@ -1,1 +1,28 @@
-<img style="width: 80%;height: auto;" src="../../../assets/anagrama.png">
+<!-- <img style="width: 80%;height: auto;" src="../../../assets/anagrama.png"> -->
+<div *ngIf="listo">
+    <br>
+    <h1><b>¿Qué otra palabra podés formar con la siguiente?</b></h1>
+    <h3>{{palabra}}</h3>
+    <mat-form-field class="example-full-width">
+        <mat-label>Posible palabra</mat-label>
+        <input type="text" style="text-align: center; text-transform: uppercase;"
+        [(ngModel)]="palabraUsuario" name="palabraUsuario" 
+        matInput [maxlength]="caracteres">
+    </mat-form-field>
+    <br>
+    <button *ngIf="!gano" mat-raised-button color="primary" (click)="comprobar()">Enviar</button>
+    <button *ngIf="gano" mat-raised-button color="primary" (click)="volverAJugar()">Volver a jugar</button>
+    <br>
+    <br>
+    <h1><b>Tiempo transcurrido:<br>{{display}}</b></h1>
+    <h4>{{mensaje}}</h4>
+    <b>Intentos esta ronda: {{intentos}}</b>
+    <br><br>
+</div>
+<div *ngIf="!listo">
+    <br>
+    <h1><b>A ver cuanto tardas en formar otra palabra con la que se muestra...</b></h1>
+    <button mat-raised-button color="primary" (click)="empezarJuego()">Jugar</button>
+    <br>
+    <br>
+</div>

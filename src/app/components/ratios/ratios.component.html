@@ -1,0 +1,13 @@
+<div class="juego">
+    <br>
+    <img [src]="src">
+    <div *ngIf="jugadas != 0">
+        <p><b>- Partidas jugadas: </b>{{jugadas}}</p>
+        <p><b>- Ratio de victorias: </b>{{victorias}}</p>
+        <p><b>- Ratio de empates: </b>{{empates}}</p>
+        <p><b>- Ratio de derrotas: </b>{{derrotas}}</p>
+    </div>
+    <div *ngIf="jugadas == 0">
+        <p><b>No es posible mostrar las estadísticas porque nunca has jugado una partida.</b></p>
+    </div>
+</div>

@@ -23,7 +23,7 @@ export class AdivinaElNumeroComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.auth.traerPartidasUsuarioAEN().subscribe(lista => {
+    this.auth.traerPartidasUsuarioPorJuego("aen").subscribe(lista => {
       this.partidas = lista;
       this.ganadas = this.partidas.length;
     });
@@ -74,7 +74,7 @@ export class AdivinaElNumeroComponent implements OnInit {
       this.disabled = true;
       this.pauseTimer();
       this.mensaje = `¡ADIVINASTE! ¡EL NÚMERO ERA ${this.numeroAdivinar}!`;
-      this.auth.guardarPartidaAEN(this.intentos, this.time);
+      this.auth.guardarPartidaTiempo("aen", this.intentos, this.time);
     }
   }
 
