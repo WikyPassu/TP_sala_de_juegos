@@ -19,6 +19,10 @@ export class PerfilComponent implements OnInit {
   empatesPPT: string;
   derrotasPPT: string;
   
+  jugadasAGI: number;
+  mejorTiempoAGI: string;
+  mejoresPartidasAGI = new Array();
+
   jugadasAEN: number;
   mejorTiempoAEN: string;
   mejoresPartidasAEN = new Array();
@@ -72,6 +76,29 @@ export class PerfilComponent implements OnInit {
     this.auth.traerResultadoUsuarioPorJuego("ppt", "Derrota :(").subscribe(res => {
       let derrotas: number = res.length;
       this.derrotasPPT = (derrotas * 100 / this.jugadasPPT).toFixed(2) + "%";
+    });
+
+    this.auth.traerPartidasUsuarioPorJuego("agi").subscribe((res: any) => {
+      let min: number = null;
+      let intentos: number = 0;
+      this.jugadasAGI = res.length;
+      res.forEach(partida => {
+        if(min == null){
+          min = partida.tiempo;
+          intentos = partida.intentos;
+        }
+        if(partida.tiempo < min){
+          min = partida.tiempo;
+          intentos = partida.intentos;
+        }
+      });
+      this.mejorTiempoAGI = this.transform(min) + ` con ${intentos} intentos.`;
+    });
+    this.auth.traerMejoresPartidasUsuarioPorJuego("agi").subscribe(res => {
+      this.mejoresPartidasAGI = res;
+      this.mejoresPartidasAGI.forEach(partida => {
+        partida.tiempo = this.transform(partida.tiempo);
+      });
     });
 
     this.auth.traerPartidasUsuarioPorJuego("aen").subscribe((res: any) => {

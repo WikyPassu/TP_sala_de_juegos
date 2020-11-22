@@ -1,1 +1,28 @@
-<img style="width: 80%;height: auto;" src="../../../../assets/agilidadaritmetica.png">
+<div *ngIf="listo">
+    <br>
+    <h1><b>¿Cuál es el resultado de esta cuenta?</b></h1>
+    <h1>{{cuenta}}</h1>
+    <mat-form-field class="example-full-width">
+        <mat-label>Resultado</mat-label>
+        <input type="number" style="text-align: center; text-transform: uppercase;"
+        [(ngModel)]="respuestaUsuario" name="respuestaUsuario" 
+        matInput [disabled]="deshabilitado">
+    </mat-form-field>
+    <br>
+    <button *ngIf="!gano" mat-raised-button color="primary" (click)="comprobar()">Enviar</button>
+    <button *ngIf="gano" mat-raised-button color="primary" (click)="volverAJugar()">Volver a jugar</button>
+    <br>
+    <br>
+    <h1><b>Tiempo restante:<br>{{display}}</b></h1>
+    <h4>{{mensaje}}</h4>
+    <b>Intentos esta ronda: {{intentos}}</b>
+    <br><br>
+</div>
+<div *ngIf="!listo">
+    <br>
+    <h1><b>Vas a tener un tiempo para poder resolver un cálculo aleatorio...</b></h1>
+    <h2>¿Listo?</h2>
+    <button mat-raised-button color="primary" (click)="empezarJuego()">Jugar</button>
+    <br>
+    <br>
+</div>
