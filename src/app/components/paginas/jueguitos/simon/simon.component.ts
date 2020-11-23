@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../../services/auth.service";
 
 @Component({
   selector: 'app-simon',
@@ -19,10 +20,23 @@ export class SimonComponent implements OnInit {
   seEquivoco: boolean = false;
   contador: number = -1;
   puntaje: number = 0;
+  mejorPuntaje: number = 0;
 
-  constructor() { }
+  constructor(private db: AuthService) { }
 
   ngOnInit(): void {
+    this.db.traerMejoresPuntajesUsuarioPorJuego("sim").subscribe((res: any) => {
+      let max: number = null;
+      res.forEach(partida => {
+        if(max == null){
+          max = partida.puntaje;
+        }
+        if(partida.tiempo > max){
+          max = partida.puntaje;
+        }
+      });
+      this.mejorPuntaje = max;
+    });
   }
 
   async wait(ms: number){
@@ -117,6 +131,7 @@ export class SimonComponent implements OnInit {
           this.titulo = "¡Upss! Te equivocaste...";
           console.log("La quedaste rey");
           this.turnoJugador = false;
+          this.db.guardarPartidaPuntaje("sim", this.puntaje);
           return false;
         }
       }
@@ -132,6 +147,7 @@ export class SimonComponent implements OnInit {
           this.titulo = "¡Upss! Te equivocaste...";
           console.log("La quedaste rey");
           this.turnoJugador = false;
+          this.db.guardarPartidaPuntaje("sim", this.puntaje);
           return false;
         }
         else{
@@ -139,6 +155,9 @@ export class SimonComponent implements OnInit {
           this.puntaje++;
           this.titulo = "Prestá atención...";
           this.secuenciaJugador = new Array();
+          if(this.puntaje > this.mejorPuntaje){
+            this.mejorPuntaje = this.puntaje;
+          }
           setTimeout(() => {
             this.secuenciar();  
           }, 1000);

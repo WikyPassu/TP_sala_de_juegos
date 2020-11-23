@@ -42,6 +42,7 @@ import { PerfilComponent } from './components/paginas/perfil/perfil.component';
 import { RatiosComponent } from './components/ratios/ratios.component';
 import { TiemposComponent } from './components/tiempos/tiempos.component';
 import { SimonComponent } from './components/paginas/jueguitos/simon/simon.component';
+import { PuntajesComponent } from './components/puntajes/puntajes.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { SimonComponent } from './components/paginas/jueguitos/simon/simon.compo
     PerfilComponent,
     RatiosComponent,
     TiemposComponent,
-    SimonComponent
+    SimonComponent,
+    PuntajesComponent
   ],
   imports: [
     FormsModule,

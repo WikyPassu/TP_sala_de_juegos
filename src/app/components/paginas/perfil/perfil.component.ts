@@ -36,6 +36,10 @@ export class PerfilComponent implements OnInit {
   mejorTiempoMEM: string;
   mejoresPartidasMEM = new Array();
 
+  jugadasSIM: number;
+  mejorPuntajeSIM: number;
+  mejoresPartidasSIM = new Array();
+
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
@@ -159,6 +163,23 @@ export class PerfilComponent implements OnInit {
       this.mejoresPartidasMEM.forEach(partida => {
         partida.tiempo = this.transform(partida.tiempo);
       });
+    });
+
+    this.auth.traerPartidasUsuarioPorJuego("sim").subscribe((res: any) => {
+      let max: number = null;
+      this.jugadasSIM = res.length;
+      res.forEach(partida => {
+        if(max == null){
+          max = partida.puntaje;
+        }
+        if(partida.puntaje > max){
+          max = partida.puntaje;
+        }
+      });
+      this.mejorPuntajeSIM = max;
+    });
+    this.auth.traerMejoresPuntajesUsuarioPorJuego("sim").subscribe((res: any) => {
+      this.mejoresPartidasSIM = res;
     });
   }
 

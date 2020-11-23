@@ -149,6 +149,17 @@ export class AuthService {
     });
   }
 
+  guardarPartidaPuntaje(coleccion: string, puntaje: number){
+    let fecha = Date.now();
+    let id = this.getCurrentUser() + "." + fecha + "." + coleccion;
+    this.db.collection(coleccion).doc(id).set({
+      id: id,
+      usuario: this.getCurrentUser(),
+      fecha: fecha,
+      puntaje: puntaje
+    });
+  }
+
   traerPartidasUsuarioPorJuego(coleccion: string){
     return this.db.collection(coleccion, ref => ref.where("usuario", "==", this.getCurrentUser())).valueChanges();
   }
@@ -161,5 +172,10 @@ export class AuthService {
   traerMejoresPartidasUsuarioPorJuego(coleccion: string){
     return this.db.collection(coleccion, ref => ref.where("usuario", "==", this.getCurrentUser())
     .orderBy("tiempo", "asc").limit(3)).valueChanges();
+  }
+
+  traerMejoresPuntajesUsuarioPorJuego(coleccion: string){
+    return this.db.collection(coleccion, ref => ref.where("usuario", "==", this.getCurrentUser())
+    .orderBy("puntaje", "desc").limit(3)).valueChanges();
   }
 }

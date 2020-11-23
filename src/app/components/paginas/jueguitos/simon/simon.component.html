@@ -15,7 +15,10 @@
     </div>
 </div>
 <br><br>
-<h4 *ngIf="listo">Puntaje: {{puntaje}}</h4>
 <button *ngIf="!listo" mat-raised-button color="primary" (click)="empezarJuego()">Jugar</button>
+<b *ngIf="listo">Puntaje: {{puntaje}}</b>
+<br>
+<b *ngIf="listo">Mejor puntaje: {{mejorPuntaje}}</b>
+<br><br>
 <button *ngIf="seEquivoco" mat-raised-button color="primary" (click)="empezarJuego()">Volver a jugar</button>
 <br><br>

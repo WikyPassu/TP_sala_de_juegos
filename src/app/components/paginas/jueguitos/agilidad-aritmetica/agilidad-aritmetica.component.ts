@@ -33,17 +33,19 @@ export class AgilidadAritmeticaComponent implements OnInit {
   constructor(private db: AuthService) { }
 
   ngOnInit(): void {
-    this.num1 = Math.floor(Math.random() * 10);
-    this.num2 = Math.floor(Math.random() * 10);
-    this.num3 = Math.floor(Math.random() * 10);
-    this.num4 = Math.floor(Math.random() * 10);
-    this.num5 = Math.floor(Math.random() * 10);
-    this.op1 = this.operaciones[Math.floor(Math.random() * 3)];
-    this.op2 = this.operaciones[Math.floor(Math.random() * 3)];
-    this.op3 = this.operaciones[Math.floor(Math.random() * 3)];
-    this.op4 = this.operaciones[Math.floor(Math.random() * 3)];
-    this.cuenta = this.num1 + " " + this.op1 + " " + this.num2 + " " + this.op2 + " " + this.num3 + " " + this.op3 + " " + this.num4 + " " + this.op4 + " " + this.num5; 
-    this.respuesta = eval(this.cuenta);
+    do{
+      this.num1 = Math.floor(Math.random() * 10);
+      this.num2 = Math.floor(Math.random() * 10);
+      this.num3 = Math.floor(Math.random() * 10);
+      this.num4 = Math.floor(Math.random() * 10);
+      this.num5 = Math.floor(Math.random() * 10);
+      this.op1 = this.operaciones[Math.floor(Math.random() * 3)];
+      this.op2 = this.operaciones[Math.floor(Math.random() * 3)];
+      this.op3 = this.operaciones[Math.floor(Math.random() * 3)];
+      this.op4 = this.operaciones[Math.floor(Math.random() * 3)];
+      this.cuenta = this.num1 + " " + this.op1 + " " + this.num2 + " " + this.op2 + " " + this.num3 + " " + this.op3 + " " + this.num4 + " " + this.op4 + " " + this.num5; 
+      this.respuesta = eval(this.cuenta);
+    }while(this.respuesta == 0);
   }
 
   empezarJuego(){
@@ -72,7 +74,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
       if(parseInt(this.respuestaUsuario) == this.respuesta){
         this.pauseTimer();
         this.gano = true;
-        this.mensaje = "¡Ganaste!";
+        this.mensaje = "¡Ganaste! La respuesta era " + this.respuesta;
         this.intentos++;
         this.db.guardarPartidaTiempo("agi", this.intentos, 30 - this.time);
       }
@@ -86,7 +88,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
   pararJuego(){
     this.pauseTimer();
     this.deshabilitado = true;
-    this.mensaje = "Se terminó el tiempo...";
+    this.mensaje = "Se terminó el tiempo...  La respuesta era " + this.respuesta;
     this.gano = true;
   }
 
