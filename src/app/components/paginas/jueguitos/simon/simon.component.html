@@ -1,0 +1,21 @@
+<br>
+<h1><b>{{titulo}}</b></h1>
+<div align="center">
+    <div class="contenedor">
+        <mat-grid-list cols="2">
+            <mat-grid-tile (click)="elegir(0)" class="verde" [ngClass]="{'verdeClaro': activoVerde}">
+            </mat-grid-tile>
+            <mat-grid-tile (click)="elegir(1)" class="rojo" [ngClass]="{'rojoClaro': activoRojo}">
+            </mat-grid-tile>
+            <mat-grid-tile (click)="elegir(2)" class="amarillo" [ngClass]="{'amarilloClaro': activoAmarillo}">
+            </mat-grid-tile>
+            <mat-grid-tile (click)="elegir(3)" class="azul" [ngClass]="{'azulClaro': activoAzul}">
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
+<br><br>
+<h4 *ngIf="listo">Puntaje: {{puntaje}}</h4>
+<button *ngIf="!listo" mat-raised-button color="primary" (click)="empezarJuego()">Jugar</button>
+<button *ngIf="seEquivoco" mat-raised-button color="primary" (click)="empezarJuego()">Volver a jugar</button>
+<br><br>

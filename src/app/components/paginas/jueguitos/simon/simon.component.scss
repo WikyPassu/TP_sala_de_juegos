@@ -1,0 +1,47 @@
+.contenedor{
+    width: 70%;
+}
+
+mat-grid-tile{
+    border: 5px solid black;
+}
+
+.verde{
+    width: 30vw;
+    background-color: rgb(0, 176, 52);
+    border-top-left-radius: 50vw;
+}
+
+.rojo{
+    width: 30vw;
+    background-color: rgb(182, 0, 0);
+    border-top-right-radius: 50vw;
+}
+
+.amarillo{
+    width: 30vw;
+    background-color: rgb(190, 187, 0);
+    border-bottom-left-radius: 50vw;
+}
+
+.azul{
+    width: 30vw;
+    background-color: rgb(0, 94, 161);
+    border-bottom-right-radius: 50vw;
+}
+
+.verdeClaro{
+    background-color: rgb(0, 255, 76);
+}
+
+.rojoClaro{
+    background-color: rgb(255, 0, 0);
+}
+
+.amarilloClaro{
+    background-color: rgb(255, 251, 0);
+}
+
+.azulClaro{
+    background-color: rgb(0, 149, 255);
+}

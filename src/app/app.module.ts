@@ -41,6 +41,7 @@ import { CeldaComponent } from './components/celda/celda.component';
 import { PerfilComponent } from './components/paginas/perfil/perfil.component';
 import { RatiosComponent } from './components/ratios/ratios.component';
 import { TiemposComponent } from './components/tiempos/tiempos.component';
+import { SimonComponent } from './components/paginas/jueguitos/simon/simon.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { TiemposComponent } from './components/tiempos/tiempos.component';
     CeldaComponent,
     PerfilComponent,
     RatiosComponent,
-    TiemposComponent
+    TiemposComponent,
+    SimonComponent
   ],
   imports: [
     FormsModule,

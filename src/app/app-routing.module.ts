@@ -16,6 +16,7 @@ import { NotLoggedInGuard } from "./guards/not-logged-in.guard";
 import { IniciarSesionComponent } from './components/paginas/iniciar-sesion/iniciar-sesion.component';
 import { RegistrarseComponent } from './components/paginas/registrarse/registrarse.component';
 import { CerrarSesionComponent } from './components/paginas/cerrar-sesion/cerrar-sesion.component';
+import { SimonComponent } from './components/paginas/jueguitos/simon/simon.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
   {
     path: 'juegos/memotest',
     component: MemotestComponent,
+    canActivate: [LoggedInGuard]
+  },
+  {
+    path: 'juegos/simon',
+    component: SimonComponent,
     canActivate: [LoggedInGuard]
   },
   {
