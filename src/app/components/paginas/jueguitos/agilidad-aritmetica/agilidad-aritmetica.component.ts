@@ -97,6 +97,7 @@ export class AgilidadAritmeticaComponent implements OnInit {
     this.mensaje = "Esperando...";
     this.gano = false;
     this.respuestaUsuario = "";
+    this.deshabilitado = false;
     this.startTimer();
   }
 }
