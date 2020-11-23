@@ -12,7 +12,7 @@ export class AnagramaComponent implements OnInit {
   palabras = [
     ["GATO", "GOTA", "TOGA"],
     ["AMOR", "ARMO", "MORA", "OMAR", "RAMO", "ROMA"],
-    ["SEPARAR", "PARARSE", "REPASAR"],
+    ["SEPARAR", "PARARSE", "REPASAR", "RAPARSE"],
     ["ROBAR", "BARRO", "OBRAR"],
     ["LINEA", "ALIEN"],
     ["COBRA", "BARCO"]
